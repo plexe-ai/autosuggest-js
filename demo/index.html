@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>plexe-autosuggest demo</title>
+<style>
+  body { font: 15px/1.5 system-ui, sans-serif; max-width: 560px; margin: 48px auto; padding: 0 16px; color: #111827; }
+  pre { background: #f3f4f6; padding: 12px; border-radius: 8px; overflow: auto; font-size: 12px; min-height: 40px; }
+</style>
+</head>
+<body>
+<h1 style="font-size:20px">Where are you going?</h1>
+<form id="f">
+  <plexe-autosuggest id="box" name="place" placeholder="City, area, landmark, airport or hotel"></plexe-autosuggest>
+  <p><button>Search hotels</button></p>
+</form>
+<pre id="out"></pre>
+<script type="module">
+  import "../src/plexe-autosuggest.js";
+  // ?key=plx_...&endpoint=http://localhost:8772 ; a website key must list this page's site
+  const q = new URLSearchParams(location.search);
+  const box = document.getElementById("box");
+  if (q.get("key")) box.setAttribute("api-key", q.get("key"));
+  if (q.get("endpoint")) box.setAttribute("endpoint", q.get("endpoint"));
+  const out = document.getElementById("out");
+  box.addEventListener("plexe-select", (e) => { out.textContent = JSON.stringify(e.detail, null, 2); });
+  box.addEventListener("plexe-error", (e) => { out.textContent = "error " + e.detail.status + ": " + e.detail.message; });
+  document.getElementById("f").addEventListener("submit", (e) => {
+    e.preventDefault();
+    out.textContent = "form submits place=" + new FormData(e.target).get("place");
+  });
+</script>
+</body>
+</html>

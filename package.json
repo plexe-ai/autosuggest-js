@@ -1,0 +1,23 @@
+{
+  "name": "@plexe/autosuggest",
+  "version": "0.1.0",
+  "description": "Hotel and destination search box for the Plexe Autosuggest API: a web component and a React wrapper.",
+  "type": "module",
+  "main": "./src/plexe-autosuggest.js",
+  "module": "./src/plexe-autosuggest.js",
+  "types": "./src/plexe-autosuggest.d.ts",
+  "exports": {
+    ".": { "types": "./src/plexe-autosuggest.d.ts", "default": "./src/plexe-autosuggest.js" },
+    "./react": { "types": "./src/react.d.ts", "default": "./src/react.js" }
+  },
+  "files": ["src", "README.md", "LICENSE"],
+  "sideEffects": ["./src/plexe-autosuggest.js", "./src/react.js"],
+  "peerDependencies": { "react": ">=17" },
+  "peerDependenciesMeta": { "react": { "optional": true } },
+  "keywords": ["autocomplete", "autosuggest", "hotel search", "destination search", "travel", "typeahead", "web component", "react"],
+  "homepage": "https://suggest.plexe.ai",
+  "repository": { "type": "git", "url": "git+https://github.com/plexe-ai/autosuggest-js.git" },
+  "bugs": { "url": "https://github.com/plexe-ai/autosuggest-js/issues" },
+  "license": "MIT",
+  "author": "Plexe"
+}
